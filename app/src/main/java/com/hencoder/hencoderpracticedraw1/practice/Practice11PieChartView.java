@@ -51,15 +51,16 @@ public class Practice11PieChartView extends View {
             paint.setColor(colors[i]);
             float random = (float)Math.random() * 30;
             //这里注意的是Math.sin的参数是弧度制，不是角度制，要转换过来，否则会出问题
+            //这里的detaX和detaY可正可负，而其正负也代表了图的平移方向，但很多时候正负都不用考虑，算法是普遍适用的。绘制文字时需要判断以校正文字对齐
             float detaY = (float) (Math.sin(Math.toRadians((double) (startAngle+angles[i]/2))));
             float detaX = (float) (Math.cos(Math.toRadians((double) (startAngle+angles[i]/2))));
             canvas.drawArc(left+random*detaX,top+random*detaY,right+random*detaX,bottom+random*detaY,startAngle,angles[i],true,paint);
-            //画线及文字，起始点是扇形边缘的中间点，即中轴线与扇形边缘交点
+            //画线，起始点是扇形边缘的中间点，即中轴线与扇形边缘交点,沿中轴线方向延伸
             float lineStartX = width/2+(random+r)*detaX;
             float lineStartY = height/2+(random+r)*detaY;
-
             canvas.drawLine(lineStartX,lineStartY,lineStartX+50*detaX,lineStartY+50*detaY,textPaint);
             canvas.drawLine(lineStartX+50*detaX,lineStartY+50*detaY,lineStartX+50*detaX+100*(detaX>0?1:-1),lineStartY+50*detaY,textPaint);
+            //画文字，以上面线的终点为起点，这里有个文字对齐的注意点，当线为向X轴正方向延伸时，左对齐；否则右对齐
             if(detaX>0){
                 textPaint.setTextAlign(Paint.Align.LEFT);
             }else{
@@ -72,8 +73,4 @@ public class Practice11PieChartView extends View {
 
     }
 
-    private void drawMyArc(float left,float top,float right,float bottom,Canvas canvas,Paint arcPaint,Paint textPaint){
-//        canvas.drawArc();
-
-    }
 }
