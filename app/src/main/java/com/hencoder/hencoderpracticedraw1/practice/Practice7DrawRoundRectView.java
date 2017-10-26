@@ -29,5 +29,6 @@ public class Practice7DrawRoundRectView extends View {
         int width = getWidth();
         int height = getHeight();
         Paint paint = new Paint();
+        canvas.drawRoundRect(width/5*1,height/4*1,width/5*4,height/4*3,50,50,paint);
     }
 }

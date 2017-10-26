@@ -29,5 +29,10 @@ public class Practice8DrawArcView extends View {
         int width = getWidth();
         int height = getHeight();
         Paint paint = new Paint();
+
+        canvas.drawArc(width/4,height/4,width/4*3,height/4*3,-15,-90,true,paint);
+        canvas.drawArc(width/4,height/4,width/4*3,height/4*3,30,120,false,paint);
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawArc(width/4,height/4,width/4*3,height/4*3,-115,-60,false,paint);
     }
 }
